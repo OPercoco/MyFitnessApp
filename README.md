@@ -13,3 +13,5 @@ List of expected features
      4.  Can pull up exercise video for form checks and that sort of thing
      5.  input ingredients maybe comes up with meals?
      
+But mostly,  What I really want to implement is the sharing features.  The only reason people get into shape is to show other people
+how into shape they're getting.

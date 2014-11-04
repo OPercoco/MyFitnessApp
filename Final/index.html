@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html> 
+<head>
+<title> Mockup for the Fitness App</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="content/css/CSS.css">
+
+
+</head>  
+<body>
+<div id = "wrapper">
+<div  id = "top-nav"></div>
+  
+
+
+
+<div id = "footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#top-nav").load("inc/_nav.html", function(){
+					$(".index").addClass("active");					
+				});
+			});
+		
+		
+			$(function(){
+				$("#footer").load("inc/_footer.html", function(){
+					$(".index").addClass("active");					
+				});
+			});
+		</script>
+</div>
+</body>
+</html>

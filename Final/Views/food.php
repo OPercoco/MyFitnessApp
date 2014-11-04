@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<link rel="stylesheet" href="CSS.css">
+
 
 <style>@import "CSS.css"</style>
 </head>  
@@ -14,7 +14,7 @@
 <div id = "wrapper">
 <div  id = "headerleft">
   <h1>Fitshare <small>2014</small></h1>
-</div> 
+</div>
 <div id = "headerright">
 
 <p align = "right"> Weather Readout</p>
@@ -22,7 +22,7 @@
 <div id = "left">
    <div class="list-group">
   
-  <a href="Exercises.html" class="list-group-item">Exercises</a>
+   <a href="Exercises.html" class="list-group-item">Exercises</a>
   <a href="Food.html" class="list-group-item">Meals</a>
   <a href="Weather.html" class="list-group-item">Weather</a>
   <a href="Data.html" class="list-group-item">Data</a>
@@ -49,7 +49,22 @@
 <p> links to different info sets,what have you</p>
 </div>
 <div id = "right">
-	
+	<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="Food.html">Home</a></li>
+  <li><a href="Recipes.html">Recipes</a></li>
+  <li><a href="Calories.html">Calories</a></li>
+ </ul>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+					$(".food").addClass("active");					
+			
+				$('#myModal').on('hidden.bs.modal', function (e) {
+				  $("#myAlert").show();
+				})
+			});
+		</script>
 	
 </div>
 <div id = "footer">

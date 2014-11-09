@@ -7,6 +7,13 @@ function GetConnection(){
 	return new mysqli('localhost','plotkinm',$sql_password,'plotkinm_db');
 }
 
+function my_print($x){
+	?><pre><?
+		print_r($x);
+	?></pre><?
+}
+
+
 function FetchAll($sql){
 		$ret = array();
 		$conn = GetConnection();
@@ -23,3 +30,21 @@ function FetchAll($sql){
 		
 		return $ret;	
 }
+
+function escape_all($row, $conn){
+	$row2 = array();
+	foreach ($row as $key => $value) {
+		$row2[$key] = $conn->real_escape_string($value);
+	}
+	return $row2;
+}
+
+
+
+
+
+
+
+
+
+

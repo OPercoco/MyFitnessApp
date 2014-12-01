@@ -30,6 +30,16 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
+		    <label for="selType_id" class="col-sm-2 control-label">Type</label>
+		    <div class="col-sm-10">
+		    	<select class="form-control" id="selType_id" name="Type_id">
+		    		<? foreach (Food_Types::Get() as $value): ?>
+						<option <?= $value['id']==$model['Type_id'] ? 'selected' : '' ?> value="<?=$value['id']?>"><?=$value['Name']?></option>
+					<? endforeach; ?>
+		    	</select>
+		    </div>
+		  </div>
+		  <div class="form-group">
 		    <label for="txtCalories" class="col-sm-2 control-label">Calories</label>
 		    <div class="col-sm-10">
 		      <input type="number" class="form-control" id="txtCalories" name="Calories" placeholder="Calories" value="<?=$model['Calories']?>">

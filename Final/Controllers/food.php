@@ -1,46 +1,78 @@
-<?php
-ini_set('display_errors', 1);
-
+<?
+	include_once __DIR__ . '/../inc/_all.php';
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
-$method = isset($_REQUEST['HTTP_METHOD']) ? $_REQUEST['HTTP_METHOD'] : 'GET';
-$view = null;
+$method = $_SERVER['REQUEST_METHOD'];
 $format = isset($_REQUEST['format']) ? $_REQUEST['format'] : 'web';
+$view 	= null;
 
-switch ($action.'_'.$method) {
+switch ($action . '_' . $method) {
 	case 'create_GET':
-	    include __DIR__ . '/../Views/food/edit.php'; 	
+		$model = Food::Blank();
+		$view = "food/edit.php";
 		break;
-	case 'create_POST':
-		
+	case 'save_POST':
+			$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
+			$errors = Food::Validate($_REQUEST);
+			if(!$errors){
+				$errors = Food::Save($_REQUEST);
+			}
+			
+			if(!$errors){
+				if($format == 'json'){
+					header("Location: ?action=edit&format=json&id=$_REQUEST[id]");
+				}else{
+					header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
+				}
+				die();
+			}else{
+				//my_print($errors);
+				$model = $_REQUEST;
+				$view = "food/edit.php";		
+			}
+			break;
+	case 'delete':
+			if($_SERVER['REQUEST_METHOD'] == 'GET'){
+				//Promt
+			}else{
+				
+			}
+			break;
 		break;
-	case 'update_GET':
-		include __DIR__ . '/../Views/food/edit.php'; 	
-		break;
-	case 'update_POST':
-		
+	case 'edit_GET':
+		$model = Food::Get($_REQUEST['id']);
+		$view = "food/edit.php";		
 		break;
 	case 'delete_GET':
-		
+		$model = Food::Get($_REQUEST['id']);
+		$view = "food/delete.php";		
 		break;
 	case 'delete_POST':
-		
+		$errors = Food::Delete($_REQUEST['id']);
+		if($errors){
+				$model = Food::Get($_REQUEST['id']);
+				$view = "food/delete.php";
+		}else{
+				header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
+				die();			
+		}
 		break;
 	case 'index_GET':
 	default:
-		include __DIR__ . '/../Views/food/index.php'; 	
+		$model = Food::Get();
+		$view = 'food/index.php';		
 		break;
 }
+
 switch ($format) {
-	case 'plain':
-		include __DIR__ . '/../Views/' . $view; 
-		break;
 	case 'json':
 		echo json_encode($model);
 		break;
-	case 'web';
+	case 'plain':
+		include __DIR__ . "/../Views/$view";		
+		break;		
+	case 'web':
 	default:
-		include __DIR__ . '/../Views/shared/_Template.php'; 	
+		include __DIR__ . "/../Views/shared/_Template.php";		
 		break;
 }
-  

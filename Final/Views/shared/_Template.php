@@ -20,7 +20,7 @@
 			<footer>
 				<div class="container">
 					<p>
-						&copy; Copyright  by Moshe
+						&copy; Copyright  by Owen Percoco
 					</p>
 				</div>
 			</footer>

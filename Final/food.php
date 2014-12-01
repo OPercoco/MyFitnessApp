@@ -18,11 +18,11 @@
 		<div id="top-nav"></div>
 			<header>
 				<div class="container">
-					<h1>Fitness Tracker - Food</h1>
+					<h1 color = "white"></h1>
 				</div>
 			</header>
 
-			<div class="container content">
+			<div class="container content" id = "food-container">
 				
 				<?
 					$msg = null;
@@ -52,7 +52,7 @@
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-						 Your <?=$key?> meal i.e. <?=$meal?> has been recorded				
+						Excelent Job. Your <?=$key?> meal i.e. <?=$meal?> has been recorded				
 				</div>
 				<? endforeach; ?>
 				
@@ -62,15 +62,19 @@
                 <tr>
                   <th>Name</th>
                   <th>Calories</th>
-                  <th>Fat (g)</th>
-                  <th>Carbs (g)</th>
-                  <th>Fiber (g)</th>
-                  <th>Protien (g)</th>
+                  <th>Protein (g)</th>
                   <th>Time</th>
                 </tr>
               </thead>
               <tbody>
-                
+                <tr>
+                </tr>
+                <tr>
+                  
+                </tr>
+                <tr>
+                  
+                </tr>
               </tbody>
             </table>
           </div>
@@ -80,7 +84,7 @@
 			<footer>
 				<div class="container">
 					<p>
-						&copy; Copyright  by Owen Percoco
+						&copy; by Owen Percoco
 					</p>
 				</div>
 			</footer>

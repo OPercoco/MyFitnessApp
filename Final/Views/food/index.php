@@ -1,3 +1,12 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="../content/css/CSS.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		
+</head>
+<body>
 <?php include "../shared/_Template.php"  ?>
 <header>
 	<div class="container">
@@ -5,7 +14,7 @@
 	</div>
 </header>
 
-<div class="container content" ng-app="app" ng-controller='index' >
+<div class="container" ng-app="app" ng-controller='index' >
 	
 	<? //my_print($model); ?>
 	<a class="btn btn-success toggle-modal add" data-target="#myModal" href="?action=create">
@@ -24,13 +33,7 @@
 				  </div>
 				</div>
 				
-				<!-- Alert -->
-				<div class="alert alert-success initialy-hidden" id="myAlert">
-					<button type="button" class="close" data-dismiss="alert">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					<div></div>
-				</div>
+				
 				
           <div class="table-responsive">
             <table class="table table-striped">
@@ -39,9 +42,7 @@
                   <th>Name</th>
                   <th>Type</th>
                   <th>Calories</th>
-                  <th>Fat (g)</th>
-                  <th>Carbs (g)</th>
-                  <th>Fiber (g)</th>
+                  <th>Protein</th>
                   <th>Time</th>
                   <th></th>
                 </tr>
@@ -51,9 +52,7 @@
                   <td>{{row.Name}}</td>
                   <td>{{row.T_Name}}</td>
                   <td>{{row.Calories}}</td>
-                  <td>{{row.Fat}}</td>
-                  <td>{{row.Carbs}}</td>
-                  <td>{{row.Fiber}}</td>
+                  <td>{{row.Protein}}</td>
                   <td>{{row.Time}}</td>
                   <td>
 					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
@@ -181,3 +180,4 @@
 				
 			});
 		</script>
+</body>

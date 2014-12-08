@@ -18,7 +18,7 @@
 			<? include __DIR__ . '/../../inc/_nav.html'; ?>
 		</div>
 			<? include __DIR__ . '/../' . $view; ?>
-			<footer>
+			<footer class = "footer">
 				<div class="container">
 					<p>
 						&copy; Copyright  by Owen Percoco

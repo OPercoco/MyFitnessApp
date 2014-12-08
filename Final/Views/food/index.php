@@ -1,7 +1,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="../content/css/CSS.css">
+		<link rel="stylesheet" href="../../content/css/CSS.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		
@@ -14,7 +14,7 @@
 	</div>
 </header>
 
-<div class="container" ng-app="app" ng-controller='index' >
+<div class="container" class = "container-content" ng-app="app" ng-controller='index' >
 	
 	<? //my_print($model); ?>
 	<a class="btn btn-success toggle-modal add" data-target="#myModal" href="?action=create">

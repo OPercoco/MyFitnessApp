@@ -13,7 +13,7 @@ class Food {
 	public static function Get($id=null)
 	{
 		$sql = "	SELECT E.*, T.Name as T_Name
-					FROM 2014Fall_Food_Eaten E
+					FROM Food E
 						Join 2014Fall_Food_Types T ON E.Type_id = T.id 
 		";
 		if($id){
@@ -32,13 +32,13 @@ class Food {
 			$row2 = escape_all($row, $conn);
 			$row2['Time'] = date( 'Y-m-d H:i:s', strtotime( $row2['Time'] ) );
 			if (!empty($row['id'])) {
-				$sql = "Update 2014Fall_Food_Eaten
+				$sql = "Update Food
 							Set Name='$row2[Name]', Type_id='$row2[Type_id]', Calories='$row2[Calories]',
 								 Protein = '$row2[Protein]', Time='$row2[Time]'
 						WHERE id = $row2[id]
 						";
 			}else{
-				$sql = "INSERT INTO 2014Fall_Food_Eaten
+				$sql = "INSERT INTO Food
 						(Name, Type_id, Calories, Protein, created_at, UserId)
 						VALUES ('$row2[Name]', '$row2[Type_id]', '$row2[Calories]', '$row2[Protein]', '$row2[Time]', Now(), 3 ) ";				
 			}
@@ -61,7 +61,7 @@ class Food {
 		static public function Delete($id)
 		{
 			$conn = GetConnection();
-			$sql = "DELETE FROM 2014Fall_Food_Eaten WHERE id = $id";
+			$sql = "DELETE FROM Food WHERE id = $id";
 			//echo $sql;
 			$results = $conn->query($sql);
 			$error = $conn->error;

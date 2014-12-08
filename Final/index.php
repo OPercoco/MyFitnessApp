@@ -2,41 +2,56 @@
 <html> 
 <head>
 <title> Mockup for the Fitness App</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="content/css/CSS.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		
 </head>  
 <body>
-<div id = "wrapper">
+<script>
+				  window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '908005495876889',
+				      xfbml      : true,
+				      cookie     : true,
+				      version    : 'v2.2'
+				    });
+				    checkLoginState();
+				  };
+				
+				  (function(d, s, id){
+				     var js, fjs = d.getElementsByTagName(s)[0];
+				     if (d.getElementById(id)) {return;}
+				     js = d.createElement(s); js.id = id;
+				     js.src = "//connect.facebook.net/en_US/sdk.js";
+				     fjs.parentNode.insertBefore(js, fjs);
+				   }(document, 'script', 'facebook-jssdk'));
+		</script>
+
+
+<div id="status">
+</div>
+<div class = "container">
 <div  id = "top-nav">
 	
 </div>
   
-<div id = "content">
-	<div id = "writing">
+<div class="container-content">
+	<div class = "page-header">
 		
-	<h1 class = "title">My Fit Share is here!</h1>
-	<p class = "text"> get in shape for the reason you really wanted to, so your friends know you're in shape</p>
-	</div>
-	<div id = "login">
-		<p>Login, or <a href = "createaccount">create an account</a></p>
-  <div class="input-group">
-  <span class="input-group-addon">Username</span>
-  <input type="text" class="form-control" placeholder="Username">
-  </div>
-  <div class="input-group">
-  <span class="input-group-addon">Password </span>
-  <input type="text" class="form-control" placeholder="Password">
-  </div>
-	<button type="button" class="btn btn-default navbar-btn">Sign in</button>
-	</div>
-	<div id = "playlist">
-		<p>Save your workout music here</p>
-   </div>
-
+	<h1>      My Fit Share is here!<br>
+	<small class = "center">    get in shape for the reason you really wanted to, so your friends know you're in shape</small></h1>
 	</div>
 	
-</div>
+	
+	<div class= "container">
+		<p>Save your workout music here</p>
+		
 
 
-<div id = "footer">
+
+<div class= "footer">
 	<p> &copy; by Owen Percoco</p>
 	
 </div>
@@ -51,6 +66,7 @@
 			});
 		
 		</script>
+		
 </div>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<body ng-app="app" ng-controller="_nav">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="../content/css/main.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container">
 		    <div class="navbar-header">
@@ -7,41 +13,83 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="index.html">My Fit Share!</a>
+		      <a class="navbar-brand" href="/../../Final/index.php">My Fit Share!</a>
 		    </div>
 		
 		    <div class="collapse navbar-collapse" id="navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="food"><a href="food.php">Track Food</a></li>
+		        <li class="food"><a href="Views/food/index.php">Track Food</a></li>
 		        <li class="exercise"><a href="exercise.php">Track Exercise</a></li>
 		        <li class="data"><a href="exercise.php">See Data</a></li>
 		      </ul>
-		      <form class="navbar-form navbar-left" role="search">
-		        <div class="form-group"> 
-		          <input type="text" class="form-control" placeholder="Search">
-		        </div>
-		        <button type="submit" class="btn btn-default">
-		        	<i class="glyphicon glyphicon-search"></i>
-				</button>
-		      </form>
-		     <a
-   class="btn btn-default"
-   href="http://www.facebook.com/sharer.php?u=_URL_&t=_ADDITIONAL_TEXT_"
->
-   <i class="fa fa-thumbs-o-up fa-lg fb"></i>
-</a>
-<a
-   class="btn btn-default"
-   href="http://twitter.com/share?url=_URL_&text=_ADDITIONAL_TEXT_&via=TWITTER_NAME"
->
-   <i class="fa fa-twitter fa-lg tw"></i>
-</a>
-<a
-   class="btn btn-default"
-   href="https://plus.google.com/share?url=_URL_"
->
-   <i class="fa fa-google-plus fa-lg google"></i>
-</a>
+		      <div
+				  class="fb-like"
+				  data-share="true"
+				  data-width="450"
+				  data-show-faces="true">
+				</div>
+		      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+				</fb:login-button>
+				<div class = "nav navbar-nav navbar-right">
+					{{status.status}}
+					
+					<img src="http://graph.facebook.com/{{me.id}}/picture" align="left" />
+					
+				</div>
+ 
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
+		<script>
+				  window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '908005495876889',
+				      xfbml      : true,
+				      cookie     : true,
+				      version    : 'v2.2'
+				    });
+				    checkLoginState();
+				  };
+				
+				  (function(d, s, id){
+				     var js, fjs = d.getElementsByTagName(s)[0];
+				     if (d.getElementById(id)) {return;}
+				     js = d.createElement(s); js.id = id;
+				     js.src = "//connect.facebook.net/en_US/sdk.js";
+				     fjs.parentNode.insertBefore(js, fjs);
+				   }(document, 'script', 'facebook-jssdk'));
+		</script>
+<script type="text/javascript">
+			var $socialScope = null;
+			angular.module('app', [])
+				.controller('social', function($scope){
+					$socialScope = $scope;
+					$socialScope.$apply();
+				});
+			function checkLoginState() {
+			    FB.getLoginStatus(function(response) {
+				    $socialScope.status = response;
+				    if (response.status === 'connected') {
+				      FB.api('/me', function(response) {
+					      $socialScope.me = response;
+					      $socialScope.$apply();
+					      console.log(response);
+					    });
+				    } else if (response.status === 'not_authorized') {
+				      // The person is logged into Facebook, but not your app.
+				      console.log('not_authorized');
+				    } else {
+				      // The person is not logged into Facebook, so we're not sure if
+				      // they are logged into this app or not.
+				      console.log('Not Logged in');
+				    }
+			    });
+			  }
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
+		

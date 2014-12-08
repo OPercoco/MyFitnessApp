@@ -1,6 +1,4 @@
-<?
-	include 'inc/global_includes.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>

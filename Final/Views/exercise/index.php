@@ -12,7 +12,7 @@
 <header>
 	
 	<div class="container">
-		<h1>Fitness Tracker - Food</h1>
+		<h1>Fitness Tracker - exersice</h1>
 	</div>
 </header>
 
@@ -42,9 +42,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Type</th>
-                  <th>Calories</th>
-                  <th>Protein</th>
+                  <th>Area</th>
+                  <th>Intensity</th>
+                  <th>Duration</th>
                   <th>Time</th>
                   <th></th>
                 </tr>
@@ -52,9 +52,9 @@
               <tbody>
                <tr ng-repeat='row in data'>
                   <td>{{row.Name}}</td>
-                  <td>{{row.T_Name}}</td>
-                  <td>{{row.Calories}}</td>
-                  <td>{{row.Protein}}</td>
+                  <td>{{row.Area}}</td>
+                  <td>{{row.Intensity}}</td>
+                  <td>{{row.Duration}}</td>
                   <td>{{row.Time}}</td>
                   <td>
 					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
@@ -72,10 +72,7 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="well" ng-controller="bmiCalculator" >
-				<input type="text" ng-model='height' class="form-control" placeholder="Your Height (in)" />
-				<input type="text" ng-model='weight'  class="form-control" placeholder="Your Weight" />
-				<div class="alert alert-success">
-					Your BMI: {{ results() }}
+				<img src = "/../../content/images/Outline-body.png"></img>
 				</div>
 			</div>
 			<div class="well">

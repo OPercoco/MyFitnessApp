@@ -13,7 +13,7 @@
 <script>
 				  window.fbAsyncInit = function() {
 				    FB.init({
-				      appId      : '908005495876889',
+				      appId      : '610341199092474',
 				      xfbml      : true,
 				      cookie     : true,
 				      version    : 'v2.2'
@@ -49,7 +49,9 @@
 	<div class= "container">
 		<p>Save your workout music here</p>
 		
-
+<div ng-app="">
+ 	<p>My first expression: {{ 5 + 5 }}</p>
+</div>
 
 
 <div class= "footer">

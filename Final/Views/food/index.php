@@ -1,5 +1,4 @@
 <head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	 
 </head>
 <body ng-app>
@@ -15,20 +14,14 @@
 <div class="container"   >
 	
 	
-    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#addStuff" >Add</button>
+    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#addStuff" >
+    	<i class="glyphicon glyphicon-plus"></i>
+    	Add</button>
   
 </div>
 	<div class="row" >
 		<div class="col-sm-8">
-						
-				<!-- Modal -->
-				<div class="modal fade" id="myModal" tabindex="-1" >
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				    </div>
-				  </div>
-				</div>
-				
+					
 				
 				
           <div class="table-responsive">
@@ -62,11 +55,12 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="well"  ng-app >
-				<input type="text" ng-model='height' class="form-control" placeholder="Your Height (in)" />
-				<input type="text" ng-model='weight'  class="form-control" placeholder="Your Weight" />
-				<div class="alert alert-info">
-					Your BMI: {{ (weight / (height * height)) * 703; }}
+				<input type="number" ng-model='height' class="form-control" placeholder="Your Height (in)" />
+				<input type="number" ng-model='weight'  class="form-control" placeholder="Your Weight" />
+				<div class="alert alert-info" >
+					<p id = "resultsread"></p>
 				</div>
+				<button onclick="results(height, weight)">results</button>
 			</div>
 			<div class="well">
 				<div class="progress">
@@ -77,9 +71,10 @@
 			</div>
 		</div>
 
-</div>
+
 		
-<div class="modal fade" id = "addStuff">
+<div class="modal fade" id="addStuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+ 	
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -87,7 +82,38 @@
         <h4 class="modal-title">Modal title</h4>
       </div>
       <div class="modal-body">
-        <p>One fine body&hellip;</p>
+       <form class="form-horizontal" >
+		  <div class="form-group">
+		    <label for="txtName" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="txtName" placeholder="Name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtCalories" class="col-sm-2 control-label">Calories</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtCalories" placeholder="Calories">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtIntensity" class="col-sm-2 control-label">Protein</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtProtein" placeholder="Protein">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtMeal" class="col-sm-2 control-label">Meal</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtMeal" placeholder="Meal">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtTime" class="col-sm-2 control-label">Time</label>
+		    <div class="col-sm-10">
+		      <input type="datetime-local" class="form-control" id="txtTime" placeholder="Time">
+		    </div>
+		  </div>
+		</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -97,13 +123,11 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->		
 </div>				
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-		<script type="text/javascript" src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v2.0.0.js"></script>
 		<script type="text/javascript">
-		function bmiCalculator($scope) {
-		    $scope.results = function() {
-            return ($scope.weight / ($scope.height * $scope.height)) * 703;
-    }
+		function results(weight, height) {
+            var result = (weight / (height * height)) * 703;
+            }
+    document.getElementById("resultsread").innerHTML =<p>"" . result . ""</p>;
 		}
 		</script>
 		<script type="text/javascript">

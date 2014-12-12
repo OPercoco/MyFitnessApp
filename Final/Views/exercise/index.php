@@ -15,7 +15,7 @@
 <div class="container"   ng-controller='index' >
 	
 	<? //my_print($model); ?>
-	<a class="btn btn-danger toggle-modal add" data-target="#myModal" href="?action=create">
+	<a class="btn btn-danger toggle-modal add" data-target="#addStuff" href="?action=create">
 		<i class="glyphicon glyphicon-plus"></i>
 		Add
 	</a>
@@ -65,8 +65,16 @@
 			</div>
 			
 		</div>
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-		<form class="form-horizontal" >
+		<div class="modal fade" id="addStuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+ 	
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       <form class="form-horizontal" >
 		  <div class="form-group">
 		    <label for="txtName" class="col-sm-2 control-label">Name</label>
 		    <div class="col-sm-10">
@@ -76,13 +84,13 @@
 		  <div class="form-group">
 		    <label for="txtArea" class="col-sm-2 control-label">Area</label>
 		    <div class="col-sm-10">
-		      <input type="number" class="form-control" id="txtCalories" placeholder="Area">
+		      <input type="text" class="form-control" id="txtArea" placeholder="Area">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="txtIntensity" class="col-sm-2 control-label">Intensity</label>
 		    <div class="col-sm-10">
-		      <input type="number" class="form-control" id="txtIntensity" placeholder="Intensity">
+		      <input type="text" class="form-control" id="txtIntensity" placeholder="Intensity">
 		    </div>
 		  </div>
 		  <div class="form-group">
@@ -97,18 +105,20 @@
 		      <input type="datetime-local" class="form-control" id="txtTime" placeholder="Time">
 		    </div>
 		  </div>
-		    <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
 		</form>
-	</div>	
-</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </div>			
 			
 			
 	
-		<script type="text/javascript" src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v2.0.0.js"></script>
+
 		<script type="text/javascript">
 			
 			var app = angular.module('app', [])

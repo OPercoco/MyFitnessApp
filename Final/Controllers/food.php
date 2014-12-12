@@ -31,7 +31,13 @@ switch ($action . '_' . $method) {
 				$view = "food/edit.php";		
 			}
 			break;
-
+	case 'delete':
+			if($_SERVER['REQUEST_METHOD'] == 'GET'){
+				//Promt
+			}else{
+				
+			}
+			break;
 		break;
 	case 'edit_GET':
 		$model = Food::Get($_REQUEST['id']);
@@ -51,6 +57,13 @@ switch ($action . '_' . $method) {
 				die();			
 		}
 		break;
+	case 'search_GET':
+		$model = Food::Search($_REQUEST['q']);
+		$view = 'food/index.php';		
+		break;
+	case 'exercise_GET':
+		$view = 'food/exercise.php';		
+		break;		
 	case 'index_GET':
 	default:
 		$model = Food::Get();

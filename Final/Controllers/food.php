@@ -31,13 +31,7 @@ switch ($action . '_' . $method) {
 				$view = "food/edit.php";		
 			}
 			break;
-	case 'delete':
-			if($_SERVER['REQUEST_METHOD'] == 'GET'){
-				//Promt
-			}else{
-				
-			}
-			break;
+
 		break;
 	case 'edit_GET':
 		$model = Food::Get($_REQUEST['id']);

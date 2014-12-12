@@ -4,27 +4,28 @@
 		<meta charset="utf-8">
 
 		<title>Fitness Tracker</title>
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="../content/css/CSS.css">
+		<link rel="stylesheet" href="../../content/css/CSS.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-		
+			
 	</head>
 
 	<body>
-		<div id="top-nav">
+		<div>
 			<? include __DIR__ . '/../../inc/_nav.html'; ?>
 		</div>
 			<? include __DIR__ . '/../' . $view; ?>
-			<footer class = "footer">
+			<div class = "footer">
 				<div class="container">
 					<p>
 						&copy; Copyright  by Owen Percoco
 					</p>
 				</div>
-			</footer>
+			</div>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
 	</body>

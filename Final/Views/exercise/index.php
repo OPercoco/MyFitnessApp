@@ -1,12 +1,8 @@
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="../../content/css/CSS.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	
 		
 </head>
-<body>
+<body ng-app>
 <?php include "../shared/_Template.php"  ?>
 <div class = "container-content">
 <header>
@@ -16,10 +12,10 @@
 	</div>
 </header>
 
-<div class="container"  ng-app="app" ng-controller='index' >
+<div class="container"   ng-controller='index' >
 	
 	<? //my_print($model); ?>
-	<a class="btn btn-success toggle-modal add" data-target="#myModal" href="?action=create">
+	<a class="btn btn-danger toggle-modal add" data-target="#myModal" href="?action=create">
 		<i class="glyphicon glyphicon-plus"></i>
 		Add
 	</a>
@@ -27,17 +23,11 @@
 	<div class="row" >
 		<div class="col-sm-8">
 						
-				<!-- Modal -->
-				<div class="modal fade" id="myModal" tabindex="-1" >
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				    </div>
-				  </div>
-				</div>
 				
 				
 				
-          <div class="table-responsive">
+				
+          <div class="table-responsive" ng-model>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -60,9 +50,7 @@
 					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
 						<i class="glyphicon glyphicon-pencil"></i>
 					</a>
-					<a title="Delete" class="btn btn-default btn-sm toggle-modal delete" data-target="#myModal" href="?action=delete&id={{row.id}}">
-						<i class="glyphicon glyphicon-trash"></i>
-					</a>
+					
                   	
                   </td>
                 </tr>			
@@ -71,53 +59,68 @@
           </div>
 		</div>
 		<div class="col-sm-4">
-			<div class="well" ng-controller="bmiCalculator" >
-				<img src = "/../../content/images/Outline-body.png"></img>
+			<div class="well"  >
+				<img src = "/Final/content/images/outline-human-body-604.jpg"></img>
 				</div>
 			</div>
-			<div class="well">
-				<div class="progress">
-				  <div class="progress-bar" ng-style="{ width: (calories / 2000 * 100) + '%' }">
-				  	Calories
-				  </div>
-				</div>
-				<div class="progress">
-				  <div class="progress-bar"  ng-style="{ width: (fat / 60 * 100) + '%' }">
-				  	Fat
-				  </div>
-				</div>
-				<div class="progress">
-				  <div class="progress-bar"  ng-style="{ width: (fiber / 60 * 100) + '%' }">
-				  	Fiber
-				  </div>
-				</div>
-			</div>
+			
 		</div>
-
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<form class="form-horizontal" >
+		  <div class="form-group">
+		    <label for="txtName" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="txtName" placeholder="Name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtArea" class="col-sm-2 control-label">Area</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtCalories" placeholder="Area">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtIntensity" class="col-sm-2 control-label">Intensity</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtIntensity" placeholder="Intensity">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtDuration" class="col-sm-2 control-label">Duration</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtDuration" placeholder="Duration">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtTime" class="col-sm-2 control-label">Time</label>
+		    <div class="col-sm-10">
+		      <input type="datetime-local" class="form-control" id="txtTime" placeholder="Time">
+		    </div>
+		  </div>
+		    <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		</form>
+	</div>	
 </div>
 </div>			
 			
 			
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	
 		<script type="text/javascript" src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v2.0.0.js"></script>
 		<script type="text/javascript">
 			
 			var app = angular.module('app', [])
-			.controller('bmiCalculator', function ($scope){
-				$scope.results = function(){
-					return ($scope.weight / ($scope.height * $scope.height)) * 703;
-				};
-			})
+			
 			.controller('index', function($scope, $http){
 				$http.get('?format=json')
-				.success(function(data){
-					$scope.data = data;
-					$scope.calories = sum(data, 'Calories');
-					$scope.fat = sum(data, 'Fat');
-					$scope.fiber = sum(data, 'Fiber');
-				});
+				
 			});
-			
+			function index($scope,$http) {
+               $http.get("http://www.cs.newpaltz.edu/~n02524553/FitnessApp/phpMyAdmin/index.php")
+               .success(function(response) {$scope.names = response;});
+               }
 			function sum(data, field){
 				var total = 0;
 				$.each(data, function(i, el){

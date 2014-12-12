@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="" ng-controller="customersController"> 
+<h1>THe test is in</h1>
+<table>
+  <tr ng-repeat="x in names">
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Genre }}</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+function customersController($scope,$http) {
+  $http.get("http://www.cs.newpaltz.edu/~n02524553/FitnessApp/Final")
+  .success(function(response) {$scope.Music = response;});
+}
+</script>
+
+</body>
+</html>

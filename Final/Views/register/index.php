@@ -44,28 +44,32 @@
 	<h2>Why not Register?<h2>
 	
     </div>
-    <div class="row">
-	  <div class="col-md-8">
-	  	<div class="input-group input-group-lg">
-		  <span class="input-group-addon" ng-model="name">Name</span>
-		  <input type="text" ng-bind="name" class="form-control" placeholder="Be you">
-		</div>
-       </div>
-	  <div class="col-md-8">
-	  	<div class="input-group input-group-lg">
-		  <span class="input-group-addon" ng-model="age">Age</span>
-		  <input type="text" ng-bind="age" class="form-control" placeholder="How Old You Feel">
-		</div>
-		</div>
-	  <div class="col-md-8">
-	  	<div class="input-group input-group-lg">
-		  <span class="input-group-addon" ng-model="weight">Weight</span>
-		  <input type="text" ng-bind="weight" class="form-control" placeholder="Its The Size You Are">
-	  </div>
-	  </div>
-	 
+    <form role="form" >
+  <div class="form-group">
+    <label for="Email">Email address</label>
+    <input type="email" class="form-control" id="Email" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" class="form-control" id="Password" placeholder="Password">
+  </div>
+   <div class="form-group">
+    <label for="cPassword">Confirm Password</label>
+    <input type="password" class="form-control" id="cPassword" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="weight">Weight</label>
+    <input type="int" class="form-control" id="weight" placeholder="weight">
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="int" class="form-control" id="age" placeholder="age">
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 	</div>  
-
+             
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>

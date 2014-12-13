@@ -59,7 +59,7 @@
 				<input type="number" ng-model='weight' class="form-control" placeholder="Your Weight" />
 				<div class="alert alert-info" >
 				
-					Your BMI: {{results}}
+					Your BMI: {{results()}}
 				    
 				</div>
 				
@@ -125,27 +125,16 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->		
 </div>				
-	<script type="text/javascript">
-			$('.typeahead').typeahead({ },
-			{
-			  displayKey: 'Name',
-			  source: function(q, callback){
-			  	$.getJSON('?action=search&format=json&q=' + q, function(data){
-			  		callback(data);
-			  	});
-			  	
-			  }
-			});	
-		</script>
-		
+	
 		
 		<script type="text/javascript">
 			var $mContent;
 			var app = angular.module('app', [])
-			function bmiCalculator($scope){
-				
-				results = $scope.weight/($scope.height * $scope.height) * 703;
-			}
+			.controller('bmiCalculator', function ($scope){
+				$scope.results = function(){
+					return ($scope.weight / ($scope.height * $scope.height)) * 703;
+				};
+			})
 			.controller('index', function($scope, $http){
 				$scope.showQuickAdd = false;
 				$scope.curRow = null;
@@ -189,13 +178,13 @@
 				return total;
 			}
 			function MyFormDialog (url, then /*callback when the form is submitted*/) {
-			  	$("#myModal").modal("show");
+			  	$("#addStuff").modal("show");
 			  	$.get(url + "&format=plain", function(data){
 					$mContent.html(data);
 					$mContent.find('form')
 					.on('submit', function(e){
 						e.preventDefault();
-						$("#myModal").modal("hide");
+						$("#addStuff").modal("hide");
 						
 						$.post(this.action + '&format=json', $(this).serialize(), function(data){
 							then(data);
@@ -211,18 +200,6 @@
 					$socialScope = $scope;
 					$socialScope.$apply();
 			});
-			function checkLoginState() {
-			    FB.getLoginStatus(function(response) {
-				    $socialScope.status = response;
-				    if (response.status === 'connected') {
-				      FB.api('/me', function(response) {
-					      $socialScope.me = response;
-					      $socialScope.$apply();
-					      console.log(response);
-					    });
-				    }
-			    });
-			  }
 
 			
 			
@@ -230,12 +207,12 @@
 			$(function(){
 				$(".food").addClass("active");
 								
-				$mContent = $("#myModal .modal-content");
+				$mContent = $("#addStuff .modal-content");
 				var defaultContent = $mContent.html();
 				
 				
 								
-				$('#myModal').on('hidden.bs.modal', function (e) {
+				$('#addStuff').on('hidden.bs.modal', function (e) {
 					$mContent.html(defaultContent);
 				    
 				})
@@ -247,22 +224,4 @@
 				
 			});
 		</script>
-		<script>
-				  window.fbAsyncInit = function() {
-				    FB.init({
-				      appId      : '908005495876889',
-				      xfbml      : true,
-				      cookie     : true,
-				      version    : 'v2.2'
-				    });
-				    checkLoginState();
-				  };
-				
-				  (function(d, s, id){
-				     var js, fjs = d.getElementsByTagName(s)[0];
-				     if (d.getElementById(id)) {return;}
-				     js = d.createElement(s); js.id = id;
-				     js.src = "//connect.facebook.net/en_US/sdk.js";
-				     fjs.parentNode.insertBefore(js, fjs);
-				   }(document, 'script', 'facebook-jssdk'));
-		</script>
+		

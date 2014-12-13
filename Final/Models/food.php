@@ -53,7 +53,7 @@ class Food {
 			}
 			
 			
-			//my_print( $sql );
+			my_print( $sql );
 			
 			$results = $conn->query($sql);
 			$error = $conn->error;
@@ -91,5 +91,5 @@ class Food {
 			return count($errors) > 0 ? $errors : false ;
 		}
 }
-
+?>
 	

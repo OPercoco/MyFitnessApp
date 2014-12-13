@@ -60,7 +60,9 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="well"  >
-				<img src = "/Final/content/images/outline-human-body-604.jpg"></img>
+				<div class="alert alert-info" >
+				 the last workout you did was :  {{row.Area}}
+				</div>
 				</div>
 			</div>
 			
@@ -135,7 +137,7 @@
 				return total;
 			}
 			$(function(){
-				$(".food").addClass("active");
+				$(".exercise").addClass("active");
 								
 				var $mContent = $("#myModal .modal-content");
 				var defaultContent = $mContent.html();
@@ -144,7 +146,7 @@
 				
 				$('body').on('click', ".toggle-modal", function(event){
 					event.preventDefault();
-					$("#myModal").modal("show");
+					$("#addStuff").modal("show");
 					var $btn = $(this);
 					
 					$.get(this.href + "&format=plain", function(data){
@@ -152,7 +154,7 @@
 						$mContent.find('form')
 						.on('submit', function(e){
 							e.preventDefault();
-							$("#myModal").modal("hide");
+							$("#addStuff").modal("hide");
 							
 							$.post(this.action + '&format=json', $(this).serialize(), function(data){
 								
@@ -164,9 +166,6 @@
 								if($btn.hasClass('add')){
 									$('tbody').append(tmpl(data));							
 								}
-								if($btn.hasClass('delete')){
-									$btn.closest('tr').remove();							
-								}
 								
 								$('#calories-bar').css({width: Math.round(totalCalories / goalCalories * 100) + '%'});
 							}, 'json');
@@ -176,7 +175,7 @@
 					});
 				})
 								
-				$('#myModal').on('hidden.bs.modal', function (e) {
+				$('#addStuff').on('hidden.bs.modal', function (e) {
 					$mContent.html(defaultContent);
 				    
 				})

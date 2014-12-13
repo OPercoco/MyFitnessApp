@@ -19,10 +19,16 @@
 		      <ul class="nav navbar-nav">
 		        <li class="food"><a href="http://www.cs.newpaltz.edu/~n02524553/FitnessApp/Final/Views/food/index.php">Track Food</a></li>
 		        <li class="exercise"><a href="http://www.cs.newpaltz.edu/~n02524553/FitnessApp/Final/Views/exercise/index.php">Track Exercise</a></li>
-		        <li class="data"><a href="data.php">Social</a></li>
-		         <li class="register"><a href="register.php">Join!</a></li>
-		   
-					
+		        <li class="data"><a href="http://www.cs.newpaltz.edu/~n02524553/FitnessApp/Final/Views/social/">Social</a></li>
+		         <li class="register"><a href="http://www.cs.newpaltz.edu/~n02524553/FitnessApp/Final/Views/register/index.php">Join!</a></li>
+		          <li>
+		          <div
+					  class="fb-like"
+					  data-share="true"
+					  data-width="450"
+					  data-show-faces="true">
+					</div>
+					</li>
 				
 		    
 
@@ -36,4 +42,20 @@
 		</nav>
 </div>
 
-		
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '610341199092474',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>	

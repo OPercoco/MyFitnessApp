@@ -1,9 +1,9 @@
 <head>
 	 
 </head>
-<body ng-app>
+<body>
 <?php include "../shared/_Template.php"  ?>
-<div class = "container-content"  ng-controller='index'>
+<div class = "container-content" ng-app='app' ng-controller = 'index'>
 <header>
 	
 	<div class="container">
@@ -54,13 +54,15 @@
           </div>
 		</div>
 		<div class="col-sm-4">
-			<div class="well"  ng-app >
+			<div class="well" ng-controller = 'bmiCalculator' >
 				<input type="number" ng-model='height' class="form-control" placeholder="Your Height (in)" />
-				<input type="number" ng-model='weight'  class="form-control" placeholder="Your Weight" />
+				<input type="number" ng-model='weight' class="form-control" placeholder="Your Weight" />
 				<div class="alert alert-info" >
-					<p id = "resultsread"></p>
+				
+					Your BMI: {{results}}
+				    
 				</div>
-				<button onclick="results(height, weight)">results</button>
+				
 			</div>
 			<div class="well">
 				<div class="progress">
@@ -123,79 +125,115 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->		
 </div>				
-		<script type="text/javascript">
-		function results(weight, height) {
-            var result = (weight / (height * height)) * 703;
-            }
-    document.getElementById("resultsread").innerHTML =<p>"" . result . ""</p>;
-		}
+	<script type="text/javascript">
+			$('.typeahead').typeahead({ },
+			{
+			  displayKey: 'Name',
+			  source: function(q, callback){
+			  	$.getJSON('?action=search&format=json&q=' + q, function(data){
+			  		callback(data);
+			  	});
+			  	
+			  }
+			});	
 		</script>
+		
+		
 		<script type="text/javascript">
-			
+			var $mContent;
 			var app = angular.module('app', [])
-			.controller('bmiCalculator', function ($scope){
-				$scope.results = function(){
-					return ($scope.weight / ($scope.height * $scope.height)) * 703;
-				};
-			})
+			function bmiCalculator($scope){
+				
+				results = $scope.weight/($scope.height * $scope.height) * 703;
+			}
 			.controller('index', function($scope, $http){
-				$http.get('?format=json')
+				$scope.showQuickAdd = false;
+				$scope.curRow = null;
+				$scope.click = function(row){
+					$scope.curRow = row;
+				}
+				
+				$http.get('?format=json&userId=')
 				.success(function(data){
 					$scope.data = data;
-					$scope.Calories = sum(data, 'Calories');
-					$scope.fat = sum(data, 'Fat');
-					$scope.fiber = sum(data, 'Fiber');
+					$scope.calories = function(){ return sum(data, 'Calories'); };
+					$scope.protein = function(){ return sum(data, 'Protein');  };
+					$scope.meal = function(){ return sum(data, 'Meal');  };
 				});
+				
+				$('body').on('click', ".toggle-modal", function(event){
+					event.preventDefault();
+					var $btn = $(this);
+					MyFormDialog(this.href, function (data) {
+						$("#myAlert").show().find('div').html(JSON.stringify(data));
+						
+						if($btn.hasClass('edit')){
+							$scope.data[$scope.data.indexOf($scope.curRow)] = data;
+						}
+						if($btn.hasClass('add')){
+							$scope.data.push(data);							
+						}
+						if($btn.hasClass('delete')){
+							$scope.data.splice($scope.data.indexOf($scope.curRow), 1);					
+						}
+						$scope.$apply();
+					})								
+				})
 			});
 			
 			function sum(data, field){
 				var total = 0;
 				$.each(data, function(i, el){
-					total += el[field];
+					total += +el[field];
 				});
 				return total;
 			}
+			function MyFormDialog (url, then /*callback when the form is submitted*/) {
+			  	$("#myModal").modal("show");
+			  	$.get(url + "&format=plain", function(data){
+					$mContent.html(data);
+					$mContent.find('form')
+					.on('submit', function(e){
+						e.preventDefault();
+						$("#myModal").modal("hide");
+						
+						$.post(this.action + '&format=json', $(this).serialize(), function(data){
+							then(data);
+						}, 'json');
+					});
+				});
+			}				
+			
+			
+			
+			var $socialScope = null;
+			app.controller('social', function($scope){
+					$socialScope = $scope;
+					$socialScope.$apply();
+			});
+			function checkLoginState() {
+			    FB.getLoginStatus(function(response) {
+				    $socialScope.status = response;
+				    if (response.status === 'connected') {
+				      FB.api('/me', function(response) {
+					      $socialScope.me = response;
+					      $socialScope.$apply();
+					      console.log(response);
+					    });
+				    }
+			    });
+			  }
+
+			
+			
+			
 			$(function(){
 				$(".food").addClass("active");
 								
-				var $mContent = $("#myModal .modal-content");
+				$mContent = $("#myModal .modal-content");
 				var defaultContent = $mContent.html();
 				
-								
 				
-				$('body').on('click', ".toggle-modal", function(event){
-					event.preventDefault();
-					$("#myModal").modal("show");
-					var $btn = $(this);
-					
-					$.get(this.href + "&format=plain", function(data){
-						$mContent.html(data);
-						$mContent.find('form')
-						.on('submit', function(e){
-							e.preventDefault();
-							$("#myModal").modal("hide");
-							
-							$.post(this.action + '&format=json', $(this).serialize(), function(data){
-								
-								$("#myAlert").show().find('div').html(JSON.stringify(data));
-								
-								if($btn.hasClass('edit')){
-									$btn.closest('tr').replaceWith(tmpl(data));							
-								}
-								if($btn.hasClass('add')){
-									$('tbody').append(tmpl(data));							
-								}
-								if($btn.hasClass('delete')){
-									$btn.closest('tr').remove();							
-								}
-								
-								$('#calories-bar').css({width: Math.round(totalCalories / goalCalories * 100) + '%'});
-							}, 'json');
-							
-							
-						});
-					});
-				})
 								
 				$('#myModal').on('hidden.bs.modal', function (e) {
 					$mContent.html(defaultContent);
@@ -209,5 +247,22 @@
 				
 			});
 		</script>
-		</div>
-</body>
+		<script>
+				  window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '908005495876889',
+				      xfbml      : true,
+				      cookie     : true,
+				      version    : 'v2.2'
+				    });
+				    checkLoginState();
+				  };
+				
+				  (function(d, s, id){
+				     var js, fjs = d.getElementsByTagName(s)[0];
+				     if (d.getElementById(id)) {return;}
+				     js = d.createElement(s); js.id = id;
+				     js.src = "//connect.facebook.net/en_US/sdk.js";
+				     fjs.parentNode.insertBefore(js, fjs);
+				   }(document, 'script', 'facebook-jssdk'));
+		</script>

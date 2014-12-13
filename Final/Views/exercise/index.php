@@ -2,19 +2,19 @@
 	
 		
 </head>
-<body ng-app>
+<body ng-app = 'app'>
 <?php include "../shared/_Template.php"  ?>
-<div class = "container-content">
+<div class = "container-content" >
 <header>
 	
 	<div class="container">
-		<h1>Fitness Tracker - exersice</h1>
+		<h1>Fitness Tracker - exercise</h1>
 	</div>
 </header>
 
 <div class="container"   ng-controller='index' >
 	
-	<? //my_print($model); ?>
+	
 	<a class="btn btn-danger toggle-modal add" data-target="#addStuff" href="?action=create">
 		<i class="glyphicon glyphicon-plus"></i>
 		Add
@@ -40,7 +40,7 @@
                 </tr>
               </thead>
               <tbody>
-               <tr ng-repeat='row in data'>
+               <tr ng-repeat='row in Exercise'>
                   <td>{{row.Name}}</td>
                   <td>{{row.Area}}</td>
                   <td>{{row.Intensity}}</td>
@@ -65,7 +65,7 @@
 			</div>
 			
 		</div>
-		<div class="modal fade" id="addStuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="addStuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
  	
   <div class="modal-dialog">
     <div class="modal-content">
@@ -127,10 +127,6 @@
 				$http.get('?format=json')
 				
 			});
-			function index($scope,$http) {
-               $http.get("http://www.cs.newpaltz.edu/~n02524553/FitnessApp/phpMyAdmin/index.php")
-               .success(function(response) {$scope.names = response;});
-               }
 			function sum(data, field){
 				var total = 0;
 				$.each(data, function(i, el){
@@ -191,5 +187,7 @@
 
 				
 			});
+			
 		</script>
+		
 </body>

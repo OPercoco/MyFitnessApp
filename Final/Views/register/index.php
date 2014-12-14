@@ -2,11 +2,8 @@
 <html> 
 <head>
 <title> Mockup for the Fitness App</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="../../content/css/CSS.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+		
 		
 </head>  
 <body>
@@ -111,7 +108,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '{your-app-id}',
+    appId      : '{610341199092474}',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page

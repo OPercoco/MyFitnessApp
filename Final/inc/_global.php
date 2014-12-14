@@ -4,9 +4,8 @@ date_default_timezone_set("America/New_York");
 
 function GetConnection(){
 	include __DIR__ . '/_password.php';
-	return new mysqli('localhost','plotkinm',$sql_password,'plotkinm_db');
+	return new mysqli('localhost','n02524553',$sql_password,'n02524553_db');
 }
-
 function my_print($x){
 	?><pre><?
 		print_r($x);
@@ -38,13 +37,4 @@ function escape_all($row, $conn){
 	}
 	return $row2;
 }
-
-
-
-
-
-
-
-
-
-
+ 

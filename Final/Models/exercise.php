@@ -39,11 +39,9 @@ class Food {
 						";
 			}else{
 				$sql = "INSERT INTO Exercise
-						(Name, Type_id, Calories, Protein, created_at, UserId)
-						VALUES ( , Now(),'$row2[Name]', '$row2[Intensity]', '$row2[Duration]', '$row2[Area]', '$row2[Time]') ";				
+						 (`created`, `updated`, `Name`, `Intensity`, `Duration`, `Area`, `Time`)
+						VALUES (Now(), Now(),'$row2[Name]', '$row2[Intensity]', '$row2[Duration]', '$row2[Area]', '$row2[Time]') ";				
 			}
-			
-			
 			my_print( $sql );
 			
 			$results = $conn->query($sql);
@@ -61,7 +59,7 @@ class Food {
 		static public function Delete($id)
 		{
 			$conn = GetConnection();
-			$sql = "DELETE FROM Food WHERE id = $id";
+			$sql = "DELETE FROM Exercise WHERE id = $id";
 			//echo $sql;
 			$results = $conn->query($sql);
 			$error = $conn->error;

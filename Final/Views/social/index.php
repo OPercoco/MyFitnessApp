@@ -5,7 +5,7 @@
 <header>
 	
 	<div class="container">
-		<h1>Fitness Tracker - Submit</h1>
+		<h1 style = "text-align: center;">Share your stories!</h1>
 	</div>
 </header>
 

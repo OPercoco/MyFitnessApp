@@ -7,7 +7,7 @@
 <header>
 	
 	<div class="container">
-		<h1>Fitness Tracker - Food</h1>
+		<h1 style = "text-align: center;">Track your meals!</h1>
 	</div>
 </header>
 
@@ -65,9 +65,12 @@
 				
 			</div>
 			<div class="well">
-				<div class="progress">
-				  <div class="progress-bar" ng-style="{ width: (calories / 2000 * 100) + '%' }">
-				  	Calories
+				  	<p>Click the button to see if its cheat day</p>
+
+						<button onclick="myFunction()">Try it</button>
+						
+						<p id="cheat"></p>
+					
 				  </div>
 				</div>
 			</div>
@@ -125,8 +128,20 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->		
 </div>				
-	
-		
+</body>	
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+		<script type="text/javascript">
+			$('.typeahead').typeahead({ },
+			{
+			  displayKey: 'Name',
+			  source: function(q, callback){
+			  	$.getJSON('?action=search&format=json&q=' + q, function(data){
+			  		callback(data);
+			  	});
+			  	
+			  }
+			});	
+		</script>
 		<script type="text/javascript">
 			var $mContent;
 			var app = angular.module('app', [])
@@ -224,4 +239,15 @@
 				
 			});
 		</script>
-		
+				<script>
+					function myFunction() {
+					    var d = new Date();
+					    var n = d.getDay()
+					      if (n == 6){
+					    document.getElementById("cheat").innerHTML = "yes!";
+					    }else{
+					    	  document.getElementById("cheat").innerHTML = "No!";
+					    }
+					    
+					}
+					</script>		  	

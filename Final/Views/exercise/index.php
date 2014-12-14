@@ -2,13 +2,13 @@
 	
 		
 </head>
-<body ng-app = 'app'>
+<body ng-app = 'app' onload="myFunction()">
 <?php include "../shared/_Template.php"  ?>
 <div class = "container-content" >
 <header>
 	
 	<div class="container">
-		<h1>Fitness Tracker - exercise</h1>
+		<h1 style = "text-align: center;">Workout!</h1>
 	</div>
 </header>
 
@@ -64,6 +64,13 @@
 				 the last workout you did was :  {{row.Area}}
 				</div>
 				</div>
+				<div class="well" >
+				  	<p>Inspiration!  Ideas for each day of the week</p>
+
+						
+						<p id="cheat"></p>
+					
+				  </div>
 			</div>
 			
 		</div>
@@ -73,7 +80,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title" style: "align: center;">Great job!  Record you exercise here</h4>
       </div>
       <div class="modal-body">
        <form class="form-horizontal" >
@@ -117,7 +124,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>			
-			
+</body>			
 			
 	
 
@@ -189,4 +196,29 @@
 			
 		</script>
 		
-</body>
+					<script>
+					function myFunction() {
+					    var d = new Date();
+					    var n = d.getDay()
+					      if (n == 1){
+					    document.getElementById("cheat").innerHTML = "Its Monday, try doing a big leg workout! Don't forget to squat.";
+					    }else if (n == 2){
+					    	  document.getElementById("cheat").innerHTML = "Its Tuesday, maybe focus on your triceps and chest.";
+					    }
+					     else if (n == 3){
+					    	  document.getElementById("cheat").innerHTML = "Wednesday is a good day for cardio, and maybe a light ab workout.";
+					    }
+					     else if (n == 4){
+					    	  document.getElementById("cheat").innerHTML = "Thursdays are for biceps and back, of you didn't deadlift on Monday, do it now.";
+					    }
+					     else if (n == 5){
+					    	  document.getElementById("cheat").innerHTML = "Friday!  More cardio?  Try a good sprint session.";
+					    }
+					    else if (n == 6){
+					    	  document.getElementById("cheat").innerHTML = "Saturday!  Get outdoors, go biking or hiking with a friend.  Fitness is more fun, together.";
+					    }
+					    else{
+					    	  document.getElementById("cheat").innerHTML = "Sunday, take a break dude.";
+					    }
+					}
+					</script>		  	

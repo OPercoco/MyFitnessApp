@@ -1,9 +1,9 @@
 <head>
 	 
 </head>
-<body>
+<body ng-app='app'>
 <?php include "../shared/_Template.php"  ?>
-<div class = "container-content" ng-app='app' ng-controller = 'index'>
+<div class = "container-content"  ng-controller = 'index'>
 <header>
 	
 	<div class="container">
@@ -250,4 +250,4 @@
 					    }
 					    
 					}
-					</script>		  	
+		</script>		  	

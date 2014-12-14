@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Food {
+class exercise {
 	
 	public static function Blank()
 	{
@@ -12,17 +12,23 @@ class Food {
 	
 	public static function Get($id=null)
 	{
-		$sql = "	SELECT E.*, T.Name as T_Name
-					FROM Exercise E
-						Join Exercise T ON E.Type_id = T.id 
+		$sql = "	SELECT * FROM Exercise
+	
 		";
 		if($id){
-			$sql .= " WHERE E.id=$id ";
+			$sql .= " WHERE id=$id ";
 			$ret = FetchAll($sql);
 			return $ret[0];
 		}else{
 			return FetchAll($sql);			
 		}
+	}
+		public static function Search($q)
+	{
+		$sql = "	SELECT * FROM Exercise
+		
+		";
+		return FetchAll($sql);			
 	}
 	
 		static public function Save(&$row)
@@ -68,7 +74,13 @@ class Food {
 			return $error ? array ('sql error' => $error) : false;
 		}
 		
-		
+		static public function Validate($row)
+		{
+			$errors = array();
+			
+			
+			return count($errors) > 0 ? $errors : false ;
+		}
 }
 
 	

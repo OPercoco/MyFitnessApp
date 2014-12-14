@@ -2,7 +2,6 @@
 	 
 </head>
 <body ng-app='app'>
-<?php include "../shared/_Template.php"  ?>
 <div class = "container-content"  ng-controller = 'index'>
 <header>
 	
@@ -14,7 +13,7 @@
 <div class="container"   >
 	
 	
-    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#addStuff" >
+    <button type="button" class="btn btn-primary" data-toggle = "modal" data-target="#addStuff" href = "?action=create">
     	<i class="glyphicon glyphicon-plus"></i>
     	Add</button>
   

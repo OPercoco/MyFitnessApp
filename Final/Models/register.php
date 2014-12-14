@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Food {
+class register {
 	
 	public static function Blank()
 	{

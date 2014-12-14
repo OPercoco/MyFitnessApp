@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Food_Types {
+class exercise_types {
 	
 	public static function Blank()
 	{

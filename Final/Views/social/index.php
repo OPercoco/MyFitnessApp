@@ -1,6 +1,7 @@
 
 <body>
 <?php include "../shared/_Template.php"  ?>
+<link rel="stylesheet" href="../../content/css/CSS.css">
 <div class = "container-content">
 <header>
 	

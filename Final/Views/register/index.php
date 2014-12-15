@@ -1,147 +1,199 @@
-<!DOCTYPE HTML>
-<html> 
 <head>
-<title> Mockup for the Fitness App</title>
-
-		
-		
-</head>  
-<body>
-	<?php include "../shared/_Template.php"  ?>
-<script>
-				  window.fbAsyncInit = function() {
-				    FB.init({
-				      appId      : '908005495876889',
-				      xfbml      : true,
-				      cookie     : true,
-				      version    : 'v2.2'
-				    });
-				    checkLoginState();
-				  };
-				
-				  (function(d, s, id){
-				     var js, fjs = d.getElementsByTagName(s)[0];
-				     if (d.getElementById(id)) {return;}
-				     js = d.createElement(s); js.id = id;
-				     js.src = "//connect.facebook.net/en_US/sdk.js";
-				     fjs.parentNode.insertBefore(js, fjs);
-				   }(document, 'script', 'facebook-jssdk'));
-		</script>
-
-
-
-<div class = "container" ng-app = "app" ng-controller = 'index'>
-<div  id = "top-nav">
+	 
+</head>
+<body ng-app='app'>
+<div class = "container-content"  ng-controller = 'index'>
+<header>
 	
-</div>
+	<div class="container">
+		<h1 style = "text-align: center;">Sign up!</h1>
+	</div>
+</header>
+
+<div class="container"   >
+	
+	
+    <button type="button" class="btn btn-danger" data-toggle = "modal" data-target="#addStuff" href = "?action=create">
+    	<i class="glyphicon glyphicon-plus"></i>
+    	Add</button>
   
-<div class="container-content">
-	<div class = "page-header">
-		
-	<h2>Why not Register?<h2>
-	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-    </div>
-    <div class = "row">
-    	<div class = "col-md-8" style: "padding: 10px;">
-    <form role="form" onsubmit="">
-  <div class="form-group">
-    <label for="Email">Email address</label>
-    <input type="email" class="form-control" id="Email" placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label for="Password">Password</label>
-    <input type="password" class="form-control" id="Password" placeholder="Password">
-  </div>
-   <div class="form-group">
-    <label for="cPassword">Confirm Password</label>
-    <input type="password" class="form-control" id="cPassword" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="weight">Weight</label>
-    <input type="int" class="form-control" id="weight" placeholder="weight">
-  </div>
-  <div class="form-group">
-    <label for="age">Age</label>
-    <input type="int" class="form-control" id="age" placeholder="age">
-  </div>
- 
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-      </div>
-     </div>
-	</div>  
-             
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
-		
-		<script>
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '{610341199092474}',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.1' // use version 2.1
-  });
-
-
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
-</script>
 </div>
-</body>
-</html>
+	<div class="row" >
+		<div class="col-sm-8">
+					
+				
+				<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
+						<i class="glyphicon glyphicon-pencil"></i>
+				</a>
+					
+                  	
+                  
+          </div>
+		</div>
+					</div>
+		</div>
+
+
+		
+<div class="modal fade" id="addStuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+ 	
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       <form class="form-horizontal" >
+		  <div class="form-group">
+		    <label for="txtName" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="txtName" placeholder="Name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtCalories" class="col-sm-2 control-label">Calories</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtCalories" placeholder="Calories">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtIntensity" class="col-sm-2 control-label">Protein</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtProtein" placeholder="Protein">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtMeal" class="col-sm-2 control-label">Meal</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="txtMeal" placeholder="Meal">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtTime" class="col-sm-2 control-label">Time</label>
+		    <div class="col-sm-10">
+		      <input type="datetime-local" class="form-control" id="txtTime" placeholder="Time">
+		    </div>
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->		
+</div>				
+</body>	
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+		<script type="text/javascript">
+			$('.typeahead').typeahead({ },
+			{
+			  displayKey: 'Name',
+			  source: function(q, callback){
+			  	$.getJSON('?action=search&format=json&q=' + q, function(data){
+			  		callback(data);
+			  	});
+			  	
+			  }
+			});	
+		</script>
+		<script type="text/javascript">
+			var $mContent;
+			var app = angular.module('app', [])
+			.controller('bmiCalculator', function ($scope){
+				$scope.results = function(){
+					return ($scope.weight / ($scope.height * $scope.height)) * 703;
+				};
+			})
+			.controller('index', function($scope, $http){
+				$scope.showQuickAdd = false;
+				$scope.curRow = null;
+				$scope.click = function(row){
+					$scope.curRow = row;
+				}
+				
+				$http.get('?format=json&userId=')
+				.success(function(data){
+					$scope.data = data;
+					$scope.calories = function(){ return sum(data, 'Calories'); };
+					$scope.protein = function(){ return sum(data, 'Protein');  };
+					$scope.meal = function(){ return sum(data, 'Meal');  };
+				});
+				
+				$('body').on('click', ".toggle-modal", function(event){
+					event.preventDefault();
+					var $btn = $(this);
+					MyFormDialog(this.href, function (data) {
+						$("#myAlert").show().find('div').html(JSON.stringify(data));
+						
+						if($btn.hasClass('edit')){
+							$scope.data[$scope.data.indexOf($scope.curRow)] = data;
+						}
+						if($btn.hasClass('add')){
+							$scope.data.push(data);							
+						}
+						if($btn.hasClass('delete')){
+							$scope.data.splice($scope.data.indexOf($scope.curRow), 1);					
+						}
+						$scope.$apply();
+					})								
+				})
+			});
+			
+			function sum(data, field){
+				var total = 0;
+				$.each(data, function(i, el){
+					total += +el[field];
+				});
+				return total;
+			}
+			function MyFormDialog (url, then /*callback when the form is submitted*/) {
+			  	$("#addStuff").modal("show");
+			  	$.get(url + "&format=plain", function(data){
+					$mContent.html(data);
+					$mContent.find('form')
+					.on('submit', function(e){
+						e.preventDefault();
+						$("#addStuff").modal("hide");
+						
+						$.post(this.action + '&format=json', $(this).serialize(), function(data){
+							then(data);
+						}, 'json');
+					});
+				});
+			}				
+			
+			
+			
+			var $socialScope = null;
+			app.controller('social', function($scope){
+					$socialScope = $scope;
+					$socialScope.$apply();
+			});
+
+			
+			
+			
+			$(function(){
+				$(".food").addClass("active");
+								
+				$mContent = $("#addStuff .modal-content");
+				var defaultContent = $mContent.html();
+				
+				
+								
+				$('#addStuff').on('hidden.bs.modal', function (e) {
+					$mContent.html(defaultContent);
+				    
+				})
+				
+				$('.alert .close').on('click',function(e){
+					$(this).closest('.alert').slideUp();
+				});
+
+				
+			});
+		</script>
+			

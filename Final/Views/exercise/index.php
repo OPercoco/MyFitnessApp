@@ -6,7 +6,7 @@
 <header>
 	
 	<div class="container">
-		<h1 style = "text-align: center;">Track your meals!</h1>
+		<h1 style = "text-align: center;">Track your Workouts!</h1>
 	</div>
 </header>
 

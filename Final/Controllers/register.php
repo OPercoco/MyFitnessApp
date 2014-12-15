@@ -9,7 +9,7 @@ $view 	= null;
 switch ($action . '_' . $method) {
 	case 'create_GET':
 		$model = Register::Blank();
-		$view = "register/index.php";
+		$view = "register/edit.php";
 		break;
 	case 'save_POST':
 			$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
@@ -28,7 +28,7 @@ switch ($action . '_' . $method) {
 			}else{
 				//my_print($errors);
 				$model = $_REQUEST;
-				$view = "register/index.php";		
+				$view = "register/edit.php";		
 			}
 			break;
 	case 'delete':
@@ -43,17 +43,27 @@ switch ($action . '_' . $method) {
 		$model = Register::Get($_REQUEST['id']);
 		$view = "register/edit.php";		
 		break;
-	
+	case 'delete_GET':
+		$model = Register::Get($_REQUEST['id']);
+		$view = "register/delete.php";		
+		break;
 	case 'delete_POST':
 		$errors = Register::Delete($_REQUEST['id']);
 		if($errors){
 				$model = Register::Get($_REQUEST['id']);
-				$view = "Register/delete.php";
+				$view = "register/delete.php";
 		}else{
 				header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
 				die();			
 		}
 		break;
+	case 'search_GET':
+		$model = Register::Search($_REQUEST['q']);
+		$view = 'register/index.php';		
+		break;
+	case 'exercise_GET':
+		$view = 'register/exercise.php';		
+		break;		
 	case 'index_GET':
 	default:
 		$model = Register::Get();

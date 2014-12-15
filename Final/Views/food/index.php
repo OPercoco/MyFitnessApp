@@ -43,7 +43,7 @@
                   <td>{{row.created}}</td>
                   <td>
 					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
-						<i class="glyphicon glyphicon-pencil"></i>
+						<i class="glyphicon glyphicon-flash"></i>
 					</a>
                   	
                   </td>

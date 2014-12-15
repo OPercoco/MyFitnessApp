@@ -43,8 +43,8 @@
                   <td>{{x.Duration}}</td>
                   <td>{{x.Time}}</td>
                   <td>
-					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
-						<i class="glyphicon glyphicon-pencil"></i>
+					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=delete&id={{row.id}}">
+						<i class="glyphicon glyphicon-flash"></i>
 					</a>
 					
                   	

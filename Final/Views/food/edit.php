@@ -53,7 +53,16 @@
 		      <input type="datetime" class="form-control" id="txtTime" name="Time" placeholder="Time"  value="<?=date('m/d/Y H:i:s', strtotime( $model['Time'])) ?>">
 		    </div>
 		  </div>
-
+		  <div class="form-group">
+		    <label for="txtFriends" class="col-sm-2 control-label">Friends</label>
+		    <div class="col-sm-10">
+		    	<? //my_print($model); ?>
+		      <input type="text" class="form-control" ng-repeat="f in friends" id="txtFriends" name="Friends" placeholder="Friends" value= "<?=$model['Friends']?>">
+		      
+		    </div>
+		  </div>
+		
+		  </div>
   </div>
   <div class="modal-footer">
     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />

@@ -32,6 +32,7 @@
                   <th>Protein</th>
                   <th>Meal</th>
                   <th>Time</th>
+                  <th>Friends</th>
                 </tr>
               </thead>
               <tbody>
@@ -40,7 +41,8 @@
                   <td>{{row.Calories}}</td>
                   <td>{{row.Protein}}</td>
                   <td>{{row.Meal}}</td>
-                  <td>{{row.created}}</td>
+                  <td>{{row.Time}}</td>
+                  <td>{{row.Friends}}</td>
                   <td>
 					<a title="Edit" class="btn btn-default btn-sm toggle-modal edit" data-target="#myModal" href="?action=edit&id={{row.id}}">
 						<i class="glyphicon glyphicon-flash"></i>
@@ -53,6 +55,10 @@
           </div>
 		</div>
 		<div class="col-sm-4">
+			<div class = "well" ng-scope ng-binding ng-controller = "social">
+			<button class = "btn btn-primary" ng-click = "login()">FB Login</button>
+			
+			</div>
 			<div class="well" ng-controller = 'bmiCalculator' >
 				<input type="number" ng-model='height' class="form-control" placeholder="Your Height (in)" />
 				<input type="number" ng-model='weight' class="form-control" placeholder="Your Weight" />
@@ -212,7 +218,11 @@
 			var $socialScope = null;
 			app.controller('social', function($scope){
 					$socialScope = $scope;
-					$socialScope.$apply();
+					$scope.login = function(){
+						FB.login(function(response){
+							checkLoginState();
+						}, {scope : 'user_friends, email'})
+					}
 			});
 
 			
@@ -249,4 +259,98 @@
 					    }
 					    
 					}
-		</script>		  	
+		</script>
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '610341199092474',
+		      xfbml      : true,
+		      version    : 'v2.2'
+		    });
+		  };
+		
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "//connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>		
+		<script>
+ 
+		  function statusChangeCallback(response) {
+		    console.log('statusChangeCallback');
+		    console.log(response);
+		
+		    if (response.status === 'connected') {
+		      // Logged into your app and Facebook.
+		      testAPI();
+		    } else if (response.status === 'not_authorized') {
+		    
+		      document.getElementById('status').innerHTML = 'Please log ' +
+		        'into this app.';
+		    } else {
+		    
+		      document.getElementById('status').innerHTML = 'Please log ' +
+		        'into Facebook.';
+		    }
+		  }
+		
+
+		  function checkLoginState() {
+		    FB.getLoginStatus(function(response) {
+		    	$socialScope.status = response;
+		    	if (response.status === 'connected'){
+		    		FB.api('/me', function(response){
+		    			$socialScope.me = response;
+		    			$socialScope.$apply();
+		    			console.log(response);
+		    		});
+		    		FB.api('/me/taggable_friends', function(response){
+		    			$socialScope.friends = response;
+		    			$socialScope.$apply();
+		    			console.log(response);
+		    		});
+		    	}
+		 
+		    });
+		  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '610341199092474',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
+
+
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>  	

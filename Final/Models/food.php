@@ -40,13 +40,13 @@ class Food {
 			if (!empty($row['id'])) {
 				$sql = "Update 2014Fall_Food_Eaten
 							Set Name='$row2[Name]',  Calories='$row2[Calories]',
-								Protein='$row2[Protein]', Meal='$row2[Meal]'
+								Protein='$row2[Protein]', Meal='$row2[Meal]', Friends='$row2[Friends]'
 						WHERE id = $row2[id]
 						";
 			}else{
 				$sql = "INSERT INTO 2014Fall_Food_Eaten
-						(Name, Calories, Protein, Meal, Time, created)
-						VALUES ('$row2[Name]',  '$row2[Calories]', '$row2[Protein]', '$row2[Meal]', Now(), Now()) ";				
+						(Name, Calories, Protein, Meal, Time, Friends, created)
+						VALUES ('$row2[Name]',  '$row2[Calories]', '$row2[Protein]', '$row2[Meal]', Now(),'$row2[Friends]', Now()) ";				
 			}
 			
 			
